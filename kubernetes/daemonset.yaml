@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    app: calico-ipip-pinger
+  name: calico-ipip-pinger
+  namespace: kube-system
+spec:
+  template:
+    metadata:
+      labels:
+        app: calico-ipip-pinger
+    spec:
+      containers:
+      - name: flanneld
+        image: quay.io/giantswarm/calico-ipip-pinger:latest
+        imagePullPolicy: Always
+        securityContext:
+          privileged: true
+      tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/master
+        operator: Exists
+      hostNetwork: true
+      restartPolicy: Always
