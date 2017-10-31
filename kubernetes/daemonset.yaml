@@ -12,7 +12,7 @@ spec:
         app: calico-ipip-pinger
     spec:
       containers:
-      - name: flanneld
+      - name: calico-ipip-pinger
         image: quay.io/giantswarm/calico-ipip-pinger:latest
         imagePullPolicy: Always
         securityContext:
